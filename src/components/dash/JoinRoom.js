@@ -1,61 +1,43 @@
 import React from 'react';
-import {
-  fade,
-  ThemeProvider,
-  withStyles,
-  makeStyles,
-  createMuiTheme,
-} from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import { green } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
+import Fireapp from '../../config/firebaseConfig'
 
 
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: 'black',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'black',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'grey',
-      },
-      '&:hover fieldset': {
-        borderColor: 'grey',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'grey',
-      },
-    },
-  },
-})(TextField);
+class JoinRoom extends React.Component {
+  handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log(this.state)
+    //firebase save
+    const db = Fireapp.firestore()
+    const ref = db.collection('test_collection');
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
+    ref.add({
+      test:'hi',
+    })
+    .then(
+      (docRef) => {
+        console.log(docRef.id)
+      }
+    )
+    .catch((error)=> {
+      console.log("Some error occured")
+    })
+  }
 
-export default function CustomizedInputs() {
-  const classes = useStyles();
+  render(){
+    return (
+      <div>
+        <form onSubmit ={this.handleSubmit}>
+          <input type="text" id="room-code" placeholder="Room Code." />
+          <br/>
+          <input type="text" id="name" placeholder="Your Name." />
+          <br/>
+           <Button type="submit" variant="outlined">Join Room.</Button>
+           <Button variant="outlined">Get A Room.</Button>
+        </form>
+      </div>
+    )
+    }
 
-  return (
-    <div>
-      <form className={classes.root}>
-        <CssTextField className={classes.margin} id="custom-css-standard-input" label="Room Code" />
-         <Button variant="outlined">Join Room</Button>
-         <Button variant="outlined">Get A Room</Button>
-      </form>
-    </div>
-  );
 }
+export default JoinRoom

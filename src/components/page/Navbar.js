@@ -29,7 +29,6 @@ export default function ButtonAppBar() {
           <Typography variant="h5" className={classes.title}>
             Inhuman Cards.
           </Typography>
-          <Button color="inherit">Share Room Link</Button>
         </Toolbar>
       </AppBar>
     </div>
