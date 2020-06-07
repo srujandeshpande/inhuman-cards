@@ -4,19 +4,53 @@ import Fireapp from '../../config/firebaseConfig'
 
 
 class JoinRoom extends React.Component {
-  handleSubmit = (e) =>{
+
+  state = {
+    roomcode:'',
+    name:'',
+  }
+
+  handleChange = (e) =>{
+    this.setState({
+      [e.target.id]:e.target.value
+    })
+  }
+
+  handleNewRoom = (e) =>{
     e.preventDefault();
     console.log(this.state)
     //firebase save
     const db = Fireapp.firestore()
     const ref = db.collection('test_collection');
 
-    ref.add({
-      test:'hi',
-    })
+    ref.add(
+      this.state
+    )
     .then(
       (docRef) => {
-        console.log(docRef.id)
+        console.log(docRef.id);
+        console.log("new room")
+      }
+    )
+    .catch((error)=> {
+      console.log("Some error occured")
+    })
+  }
+
+  handleJoinRoom = (e) =>{
+    e.preventDefault();
+    console.log(this.state)
+    //firebase save
+    const db = Fireapp.firestore()
+    const ref = db.collection('test_collection');
+
+    ref.add(
+      this.state
+    )
+    .then(
+      (docRef) => {
+        console.log(docRef.id);
+        console.log("join room")
       }
     )
     .catch((error)=> {
@@ -27,13 +61,27 @@ class JoinRoom extends React.Component {
   render(){
     return (
       <div>
-        <form onSubmit ={this.handleSubmit}>
-          <input type="text" id="room-code" placeholder="Room Code." />
+        <form>
+          <input
+            type="text"
+            id="roomcode"
+            placeholder="Room Code."
+            onChange={(e) => this.handleChange(e)}
+          />
           <br/>
-          <input type="text" id="name" placeholder="Your Name." />
+          <input
+            type="text"
+            id="name"
+            placeholder="Your Name."
+            onChange={(e) => this.handleChange(e)}
+          />
           <br/>
+          </form>
+          <form onSubmit ={this.handleJoinRoom}>
            <Button type="submit" variant="outlined">Join Room.</Button>
-           <Button variant="outlined">Get A Room.</Button>
+          </form>
+         <form onSubmit ={this.handleNewRoom}>
+           <Button type="submit" variant="outlined">Get A Room.</Button>
         </form>
       </div>
     )
