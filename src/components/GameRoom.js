@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Navbar from './gameboard/Navbar';
 import WhiteCard from './gameboard/WhiteCard';
 import BlackCard from './gameboard/BlackCard';
+import PaperCard from './gameboard/PaperCard';
 
 export default function GameRoom() {
 
@@ -23,6 +24,7 @@ export default function GameRoom() {
       Hello
       <WhiteCard/>
       <BlackCard/>
+      <PaperCard/>
     </div>
   );
 }
