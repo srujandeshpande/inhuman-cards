@@ -6,27 +6,35 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-
-import Navbar from './gameboard/Navbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     textAlign:'center',
   },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
 }));
 
-export default function GameRoom() {
+export default function Navbar() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Navbar/>
-      Hello
+      <AppBar position="static" style={{ background: '#000' }}>
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            Inhuman Cards.
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+            Room number
+          </Typography>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 }
