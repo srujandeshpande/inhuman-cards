@@ -14,17 +14,20 @@ import CardContent from '@material-ui/core/CardContent';
 import Navbar from './gameboard/Navbar';
 import WhiteCard from './gameboard/WhiteCard';
 import BlackCard from './gameboard/BlackCard';
-import PaperCard from './gameboard/PaperCard';
+
+import Gameboard from './gameboard/Gameboard';
+import Deck from './gameboard/Deck';
+
 
 export default function GameRoom() {
 
   return (
     <div>
       <Navbar/>
-      Hello
-      <WhiteCard/>
-      <BlackCard/>
-      <PaperCard/>
+      GameRoom
+      <Gameboard/>
+      <Deck/>
+
     </div>
   );
 }

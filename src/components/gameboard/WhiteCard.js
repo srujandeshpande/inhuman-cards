@@ -1,28 +1,32 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 200,
-    minHeight: 200,
+    float: 'left',
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(25),
+      height: theme.spacing(25),
+    },
   },
   title: {
     fontSize: 12,
   },
-  pos: {
-    marginBottom: 12,
-  },
-});
+}));
 
-export default function OutlinedCard() {
+export default function PaperCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <div className={classes.root}>
+      <Paper elevation={3} >
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           Inhuman Cards
@@ -31,6 +35,7 @@ export default function OutlinedCard() {
           INSERT CARD CONTEnT HERE
         </Typography>
       </CardContent>
-    </Card>
+      </Paper>
+    </div>
   );
 }
