@@ -6,17 +6,24 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    textAlign:'center',
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
-    textAlign:'center',
+  },
+  textField: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
   },
 }));
 
@@ -32,6 +39,17 @@ export default function ButtonAppBar() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <br/>
+      Welcome imbecile. There are no instructions for this game. If you don't know, then you can kindly show yourself the door.
+      <br/>
+      <br/>
+      <Button variant="contained">Create New Room</Button>
+      <br/>
+      <br/>
+      <form className={classes.testField} noValidate autoComplete="off">
+        <TextField id="outlined-basic" label="Room Code" variant="outlined" />
+        <Button variant="contained">Join Room</Button>
+      </form>
     </div>
   );
 }
