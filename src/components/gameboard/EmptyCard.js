@@ -39,7 +39,7 @@ export default function PaperCard() {
           Inhuman Cards
         </Typography>
         <Typography className={classes.content} variant="h5" component="h2">
-          INSERT CARD CONTEnT HERE
+          EMPTY CARD SLOT
         </Typography>
       </CardContent>
       </Paper>
