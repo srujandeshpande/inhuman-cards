@@ -12,21 +12,17 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 import Navbar from './gameboard/Navbar';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    textAlign:'center',
-  },
-}));
+import WhiteCard from './gameboard/WhiteCard';
+import BlackCard from './gameboard/BlackCard';
 
 export default function GameRoom() {
-  const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <Navbar/>
       Hello
+      <WhiteCard/>
+      <BlackCard/>
     </div>
   );
 }
