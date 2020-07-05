@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import store from '../../redux/store'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-
+  var state = store.getState();
+  console.log(state)
+  var game_id = state.socketReducer.game_id;
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ background: '#000' }}>
@@ -31,7 +33,7 @@ export default function Navbar() {
             Inhuman Cards.
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            Room number
+            Room number: { game_id } 
           </Typography>
         </Toolbar>
       </AppBar>

@@ -7,7 +7,8 @@ function socketReducer(state = initState,action){
         case Types.ADD_SOCKET:
             return {
                 ...state,
-                socket: action.socket
+                socket: action.socket,
+                game_id: action.game_id,
             }
         default:
             return state;

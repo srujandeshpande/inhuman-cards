@@ -17,11 +17,13 @@ import BlackCard from './gameboard/BlackCard';
 
 import Gameboard from './gameboard/Gameboard';
 import Deck from './gameboard/Deck';
-
+import store from '../redux/store';
 import Game from '../gamelogic/game'
 
 function GameRoom(props) {
-  Game(props.room_id);
+  var game_id = props.match.params.id;
+  const game = new Game(game_id);
+  
   return (
     <div style={{width:'100%'}}>
       <Navbar/>
