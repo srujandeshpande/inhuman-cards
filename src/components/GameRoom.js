@@ -22,11 +22,14 @@ import Deck from './gameboard/Deck';
 export default function GameRoom() {
 
   return (
-    <div>
+    <div style={{width:'100%'}}>
       <Navbar/>
       GameRoom
       <Gameboard/>
+      <div style={{width:'100%'}}>
       <Deck/>
+      </div>
+
 
     </div>
   );

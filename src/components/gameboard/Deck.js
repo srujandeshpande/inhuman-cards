@@ -6,7 +6,7 @@ import BlackCard from './BlackCard';
 export default function Deck() {
 
   return (
-    <div style={{display:'block'}}>
+    <div style={{width:'100%'}}>
       <WhiteCard/>
       <WhiteCard/>
       <WhiteCard/>

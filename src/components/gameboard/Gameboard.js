@@ -5,7 +5,8 @@ import EmptyCard from './EmptyCard';
 
 export default function Gameboard() {
   return (
-    <div>
+    <div style={{width:'100%'}}>
+      <hr/>
       <BlackCard/>
       <EmptyCard/>
       <EmptyCard/>

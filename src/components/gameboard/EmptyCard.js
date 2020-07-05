@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
   },
   sheet: {
-    background: '#000',
+    background: 'gray',
   }
 }));
 
