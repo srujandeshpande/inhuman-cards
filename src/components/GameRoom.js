@@ -18,9 +18,10 @@ import BlackCard from './gameboard/BlackCard';
 import Gameboard from './gameboard/Gameboard';
 import Deck from './gameboard/Deck';
 
+import Game from '../gamelogic/game'
 
-export default function GameRoom() {
-
+function GameRoom(props) {
+  Game(props.room_id);
   return (
     <div style={{width:'100%'}}>
       <Navbar/>
@@ -29,8 +30,8 @@ export default function GameRoom() {
       <div style={{width:'100%'}}>
       <Deck/>
       </div>
-
-
     </div>
   );
 }
+
+export default GameRoom;
