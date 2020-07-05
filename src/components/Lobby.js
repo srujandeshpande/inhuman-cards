@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,9 +7,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import TextField from '@material-ui/core/TextField';
-import { NavLink } from 'react-router-dom';
-import store from '../redux/store'
-import Types from '../redux/actionTypes'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,36 +27,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Homepage() {
-
-  const [room_id, setRoom] = useState("");
-
+export default function Lobby() {
   const classes = useStyles();
-
 
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ background: '#000' }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Inhuman Cards.
+            Inhuman Cards Lobby.
           </Typography>
         </Toolbar>
       </AppBar>
       <br/>
-      Welcome imbecile. There are no instructions for this game. If you sssdon't know, then you can kindly show yourself the door.
-      <br/>
-      {room_id}
-      <br/>
-      <Button variant="contained">Create New Room</Button>
+      Welcome imbecile. There are no instructions for this game. If you don't know, then you can kindly show yourself the door.
       <br/>
       <br/>
-      <form className={classes.testField} noValidate autoComplete="off">
-        <TextField id="outlined-basic" label="Room Code" variant="outlined" onChange={(e) => setRoom("/"+e.target.value)}/>
-        {/*<TextField id="outlined-basic" label="Your Nickname" variant="outlined" onChange={(e) => store.dispatch({ type:Types.UPDATE_RESOURCES, game_id: e.target.value })}/>*/}
-        <TextField id="outlined-basic" label="Your Nickname" variant="outlined"/>
-        <NavLink to={room_id}><Button variant="contained">Join Room</Button></NavLink>
-      </form>
+      <Button variant="contained">Start Game</Button>
+      <br/>
+      <br/>
     </div>
   );
 }
