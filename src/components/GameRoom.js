@@ -23,7 +23,28 @@ import Game from '../gamelogic/game'
 function GameRoom(props) {
   var game_id = props.match.params.id;
   const game = new Game(game_id);
-  
+  const handleStart =() =>{
+    game.socket.emit('ready',{
+      game_id: game.game_id,
+    });
+    console.log("GAME STARTED")
+  }
+  const playWhiteCard = () => {
+    var card = {
+      title:'hello friends',
+      description: 'chai peelo'
+    }
+    game.socket.emit('play-white-card',{card: card,game_id:game.game_id})
+  }
+
+  const playBlackCard = () => {
+    var card = {
+      title:'who are you',
+      description: 'hahaha'
+    }
+    game.socket.emit('play-black-card',{card: card,game_id:game.game_id})
+  }
+
   return (
     <div style={{width:'100%'}}>
       <Navbar/>
@@ -31,6 +52,15 @@ function GameRoom(props) {
       <Gameboard/>
       <div style={{width:'100%'}}>
       <Deck/>
+      <Button onClick = {handleStart}>
+        Start game
+      </Button>
+      <Button onClick = {playWhiteCard}>
+        Play white card
+      </Button>
+      <Button onClick = {playBlackCard}>
+        Play black card
+      </Button>
       </div>
     </div>
   );

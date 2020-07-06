@@ -4,17 +4,47 @@ import io from 'socket.io-client';
 const SERVER_URL = 'http://localhost:5000'
 //const SERVER_URL = 'http://192.168.1.9:5000'
 
-function initialize_sockets(room_id){
+function initialize_sockets(game_id){
     var socket = io(SERVER_URL);
-
-    socket.on('connect',handleConnect);
+    
+    socket.on('connect',()=>{
+        socket.emit('room',{game_id:game_id});
+        handleConnect(socket,game_id)
+    });
     socket.on('disconnect',handleDisconnect);
+
+    socket.on('player-status',(data)=>{
+        handlePlayerStatus(data)
+    })
+    socket.on('start-game',()=>{
+        console.log('start the damn game')
+    })
+    socket.on('black-card',(data)=>{
+        console.log("black card played:",data.card)
+    })
+    socket.on('white-card',(data)=>{
+        console.log("white card played:",data.card)
+    })
+    socket.on('player-status',(data)=>{
+        console.log(
+            'time for next round bichess',data
+        )
+    })
+    socket.on('winner',(data)=>{
+        console.log("WINNER OF THE ROUND IS",data)
+    })
+
 
     return socket;
 }
 
-function handleConnect(){
+function handleConnect(socket,game_id){
     console.log("Connected to host");
+    
+}
+
+function handlePlayerStatus(data){
+    console.log('Player status',data);
 }
 
 function handleDisconnect(){
