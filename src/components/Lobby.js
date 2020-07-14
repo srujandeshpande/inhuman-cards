@@ -1,4 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  changeId,
+  changeName,
+  selectId,
+  selectName,
+  joinRoom,
+} from '../redux/gameSlice';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -28,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Lobby() {
+
+  const game_id = useSelector(selectId);
+  const named = useSelector(selectName);
+  const dispatch = useDispatch();
+
   const classes = useStyles();
 
   return (
@@ -42,7 +57,9 @@ export default function Lobby() {
       <br/>
       Welcome imbecile. There are no instructions for this game. If you don't know, then you can kindly show yourself the door.
       <br/>
+      {game_id}
       <br/>
+      {named}
       <Button variant="contained">Start Game</Button>
       <br/>
       <br/>
