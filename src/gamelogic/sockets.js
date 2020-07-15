@@ -4,14 +4,16 @@ import io from 'socket.io-client';
 const SERVER_URL = 'http://localhost:5000'
 //const SERVER_URL = 'http://192.168.1.9:5000'
 
-function initialize_sockets(game_id){
+function initialize_sockets(game_id, named){
     var socket = io(SERVER_URL);
-    
+
     socket.on('connect',()=>{
-        socket.emit('room',{game_id:game_id});
-        handleConnect(socket,game_id)
+        socket.emit('lobby',{game_id:game_id, name:named});
+        //handleConnect(socket,game_id)
     });
     socket.on('disconnect',handleDisconnect);
+
+    //return socket;
 
     socket.on('player-status',(data)=>{
         handlePlayerStatus(data)
@@ -35,12 +37,11 @@ function initialize_sockets(game_id){
     })
 
 
-    return socket;
 }
 
 function handleConnect(socket,game_id){
     console.log("Connected to host");
-    
+
 }
 
 function handlePlayerStatus(data){

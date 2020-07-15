@@ -6,8 +6,11 @@ import {
   changeName,
   selectId,
   selectName,
+  selectSocket,
   joinRoom,
 } from '../redux/gameSlice';
+
+import Game from '../gamelogic/game';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -41,9 +44,19 @@ export default function Lobby() {
 
   const game_id = useSelector(selectId);
   const named = useSelector(selectName);
+  const sock = useSelector(selectSocket);
   const dispatch = useDispatch();
 
   const classes = useStyles();
+
+  const game = new Game(game_id, named);
+  const handleStart =() =>{
+    game.socket.emit('ready',{
+      game_id: game.game_id,
+    });
+    console.log("GAME STARTED")
+  }
+
 
   return (
     <div className={classes.root}>
@@ -59,7 +72,8 @@ export default function Lobby() {
       <br/>
       {game_id}
       <br/>
-      {named}
+      {named},{sock}
+
       <Button variant="contained">Start Game</Button>
       <br/>
       <br/>

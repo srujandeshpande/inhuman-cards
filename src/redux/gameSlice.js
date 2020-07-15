@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const gameSlice = createSlice({
   name: 'game',
   initialState: {
-    id:"xyz",
-    name: "Nothing",
+    id:"",
+    name: "",
+    socket: "",
   },
   reducers: {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -20,11 +21,14 @@ export const gameSlice = createSlice({
     joinRoom: (state,action) => {
       state.id = action.payload[0];
       state.name = action.payload[1];
+    },
+    joinLobby: (state,action) => {
+      state.socket = action.payload;
     }
   },
 });
 
-export const { changeId, changeName, joinRoom } = gameSlice.actions;
+export const { changeId, changeName, joinRoom, joinLobby } = gameSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -42,5 +46,7 @@ export const { changeId, changeName, joinRoom } = gameSlice.actions;
 export const selectId = state => state.game.id;
 
 export const selectName = state => state.game.name;
+
+export const selectSocket = state => state.game.socket;
 
 export default gameSlice.reducer;
